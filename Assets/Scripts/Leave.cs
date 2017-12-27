@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Leave : MonoBehaviour {
 
+    public Text lifeText;
     public float moveTimeMultiple = 5;
+    public int lifeValue = 3;
 
     private Rigidbody2D rig;
     private float moveTime;
@@ -59,7 +62,14 @@ public class Leave : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        lifeValue--;
+        lifeText.text = "生命值：" + lifeValue.ToString();
+        if (lifeValue <= 0)
+        {
+            rig.velocity = Vector2.zero;
+            GameControl.instance.isGameOver = true;
+        }
         //Debug.Log("发生碰撞");
-        GameControl.instance.isGameOver = true;
+        
     }
 }

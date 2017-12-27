@@ -31,6 +31,7 @@ public class GameControl : MonoBehaviour {
         if (isGameOver)
         {
             gameOverText.text = "GG";
+            
         }
 	}
 }
