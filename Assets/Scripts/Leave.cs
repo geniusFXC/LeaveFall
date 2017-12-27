@@ -16,13 +16,13 @@ public class Leave : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 mousePositionOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 mousePositionOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         #region 触摸事件
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             
             
-              transform.Translate(Input.GetTouch(0).deltaPosition * Time.deltaTime);
+              //transform.Translate(Input.GetTouch(0).deltaPosition * Time.deltaTime);
             
             
         }
