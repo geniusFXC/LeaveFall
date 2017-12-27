@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour {
     public static GameControl instance;
     public float scrollSpeed = -1.5f;
+
+    public Text gameOverText;
+    public bool isGameOver = false;
+
     void Awake()
     {
         //If we don't currently have a game control...
@@ -23,6 +28,9 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (isGameOver)
+        {
+            gameOverText.text = "GG";
+        }
 	}
 }

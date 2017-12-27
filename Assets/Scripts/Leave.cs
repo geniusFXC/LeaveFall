@@ -7,11 +7,12 @@ public class Leave : MonoBehaviour {
 
     public float moveTimeMultiple = 5;
 
+    private Rigidbody2D rig;
     private float moveTime;
     private Vector3 initPosition;
 	// Use this for initialization
 	void Start () {
-		
+        rig = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -52,11 +53,13 @@ public class Leave : MonoBehaviour {
     void Move(Vector3 offSet, float time)
     {
 
-        transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
+        //transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
+        rig.velocity = offSet / time / moveTimeMultiple;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-
+        //Debug.Log("发生碰撞");
+        GameControl.instance.isGameOver = true;
     }
 }

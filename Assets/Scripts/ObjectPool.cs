@@ -7,6 +7,7 @@ public class ObjectPool : MonoBehaviour {
     //引用
     public GameObject barrierPfb;
     //
+    [Header("生成速率")]
     public float spawnRate = 0.5f;
     public int objectPoolSize = 10;
     public float spawnYPosition = -8;
