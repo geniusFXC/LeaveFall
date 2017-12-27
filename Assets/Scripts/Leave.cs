@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Leave : MonoBehaviour {
 
     public Text lifeText;
-    public float moveTimeMultiple = 5;
+    public float moveTimeMultiple = 7;
     public int lifeValue = 3;
 
     private Rigidbody2D rig;
@@ -58,6 +58,7 @@ public class Leave : MonoBehaviour {
 
         //transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
         rig.velocity = offSet / time / moveTimeMultiple;
+        //rig.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
     }
 
     void OnCollisionEnter2D(Collision2D other)
