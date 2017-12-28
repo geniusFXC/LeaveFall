@@ -8,7 +8,8 @@ public class ObjectPool : MonoBehaviour {
     public GameObject barrierPfb;
     //
     [Header("生成速率")]
-    public float spawnRate = 0.5f;
+    public float spawnRate = 0.5f;//生成障碍物的时间间隔
+    public int changeDifficultNode = 8;//改变生成速率的节点，也就是改变游戏难度的一个值，时间/值 是改变难度的点
     public int objectPoolSize = 10;
     public float spawnYPosition = -8;
     public float xMax = 7;
@@ -17,6 +18,7 @@ public class ObjectPool : MonoBehaviour {
 
     private GameObject[] barriers;
     private float timeSinceLastSpawn = 0;
+    private float timeOfDifficultChange = 0;
     private Vector2 barrierPoolPosition = new Vector2(-10,0);
     private int currentBarrier = 0;
 
@@ -51,6 +53,15 @@ public class ObjectPool : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        CreatBarrier();
+        ChangeDifficult();
+        
+	}
+    /// <summary>
+    /// 生成障碍物
+    /// </summary>
+    void CreatBarrier()
+    {
         if (isSpawn)
         {
             timeSinceLastSpawn += Time.deltaTime;
@@ -66,8 +77,22 @@ public class ObjectPool : MonoBehaviour {
                 }
             }
         }
-
+    }
+    /// <summary>
+    /// 改变游戏难度
+    /// </summary>
+    void ChangeDifficult()
+    {
+        timeOfDifficultChange += Time.deltaTime;
+        if (spawnRate >= 0.5)
+        {
+            if (timeOfDifficultChange == changeDifficultNode)
+            {
+                timeOfDifficultChange = 0;
+                spawnRate -= 0.3f;
+            }
+        }
         
-	}
+    }
     
 }
