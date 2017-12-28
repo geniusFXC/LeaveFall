@@ -9,6 +9,9 @@ public class GameControl : MonoBehaviour {
 
     public Text gameOverText;
     public bool isGameOver = false;
+    public GameObject bG;
+    public GameObject leave;
+    
 
     void Awake()
     {
@@ -31,6 +34,21 @@ public class GameControl : MonoBehaviour {
         if (isGameOver)
         {
             gameOverText.text = "GG";
+            //把背景滚动停止
+            foreach(Rigidbody2D rig in bG.GetComponentsInChildren<Rigidbody2D>())
+            {
+                rig.velocity = Vector2.zero;
+            }
+            //障碍停止运动
+            foreach (GameObject barriers in ObjectPool.instance.barriersPool)
+            {
+                barriers.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+            //停止随机生成障碍
+            ObjectPool.instance.isSpawn = false;
+            //锁定物体
+            leave.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        
             
         }
 	}
