@@ -13,7 +13,10 @@ public class GameControl : MonoBehaviour {
     public bool isGameOver = false;
     public GameObject bG;
     public GameObject leave;
-    
+    public Text meterText;
+
+
+    private float meters = 0;
 
     void Awake()
     {
@@ -51,9 +54,14 @@ public class GameControl : MonoBehaviour {
             ObjectPool.instance.isSpawn = false;
             //锁定物体
             leave.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        
-            
         }
+        else
+        {
+            meters += Time.deltaTime;
+            meterText.text = "飘落距离：" + meters.ToString("0.00") + "m";
+        }
+
+        
 	}
     void OnBackClick()
     {
