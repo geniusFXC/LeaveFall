@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
     public static GameControl instance;
     public float scrollSpeed = -1.5f;
 
-    public Text gameOverText;
+    public GameObject gameOverUI;
+    public GameObject backBtn;
     public bool isGameOver = false;
     public GameObject bG;
     public GameObject leave;
@@ -26,14 +28,15 @@ public class GameControl : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
+        backBtn.GetComponent<Button>().onClick.AddListener(OnBackClick);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (isGameOver)
         {
-            gameOverText.text = "GG";
+            gameOverUI.SetActive(true);
+            //gameOverText.text = "GG";
             //把背景滚动停止
             foreach(Rigidbody2D rig in bG.GetComponentsInChildren<Rigidbody2D>())
             {
@@ -52,4 +55,8 @@ public class GameControl : MonoBehaviour {
             
         }
 	}
+    void OnBackClick()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }
