@@ -16,8 +16,11 @@ public class GameCtrManager : MonoBehaviour {
 
     public Text meterText;
     public Text goldText;
+    public Button stopBtn;
+    public Text stopBtnText;
 
     private float meters = 0;
+    private bool isStop = false;
 
     void Awake()
     {
@@ -33,6 +36,7 @@ public class GameCtrManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         backBtn.GetComponent<Button>().onClick.AddListener(OnBackClick);
+        stopBtn.GetComponent<Button>().onClick.AddListener(OnStopClick);
 	}
 	
 	// Update is called once per frame
@@ -45,7 +49,7 @@ public class GameCtrManager : MonoBehaviour {
         {
             gameOverUI.SetActive(true);
             GameStop();
-           
+
         }
         else
         {
@@ -58,23 +62,34 @@ public class GameCtrManager : MonoBehaviour {
     /// </summary>
     void GameStop()
     {
-        //背景静止
-        foreach (Rigidbody2D rig in bG.GetComponentsInChildren<Rigidbody2D>())
+        isStop = !isStop;
+        if (isStop)
         {
-            rig.velocity = Vector2.zero;
+            stopBtnText.text = "开始";
+            Time.timeScale = 0;   
         }
-        //对象池静止
-        PoolManager.instance.GameStop();
-        //锁定叶子
-        leave.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        else
+        {
+            stopBtnText.text = "暂停";
+            Time.timeScale = 1;            
+        }
 
     }
     void GameStart()
     {
 
     }
+    void GameReStart()
+    {
+
+    }
     void OnBackClick()
     {
         SceneManager.LoadScene("MenuScene");
+    }
+    void OnStopClick()
+    {
+        GameStop();
+        
     }
 }

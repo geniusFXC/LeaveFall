@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     public float spawnYPosition = -8;
     public float xMax = 7;
     public float xMin = -7;
-    public bool isSpawn = true;//是否重新生成
+
 
     private GameObject[] objcetPool;
     private float timeSinceLastSpawn = 0;
@@ -48,21 +48,20 @@ public class ObjectPool : MonoBehaviour
     /// </summary>
     void ResetObjectPosition()
     {
-        if (isSpawn)
+
+        timeSinceLastSpawn += Time.deltaTime;
+        if (timeSinceLastSpawn > spawnRate)
         {
-            timeSinceLastSpawn += Time.deltaTime;
-            if (timeSinceLastSpawn > spawnRate)
+            timeSinceLastSpawn = 0;
+            float spawnXPosition = Random.Range(xMin, xMax);
+            objcetPool[currentObject].transform.position = new Vector2(spawnXPosition, spawnYPosition);
+            currentObject++;
+            if (currentObject >= objectPoolSize)
             {
-                timeSinceLastSpawn = 0;
-                float spawnXPosition = Random.Range(xMin, xMax);
-                objcetPool[currentObject].transform.position = new Vector2(spawnXPosition, spawnYPosition);
-                currentObject++;
-                if (currentObject >= objectPoolSize)
-                {
-                    currentObject = 0;
-                }
+                currentObject = 0;
             }
         }
+
     }
 
 }

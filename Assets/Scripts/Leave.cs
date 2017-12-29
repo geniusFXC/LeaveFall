@@ -57,7 +57,11 @@ public class Leave : MonoBehaviour {
     }
     void Move(Vector3 offSet, float time)
     {
-
+        //Debug.Log(time);
+        if (time == 0)
+        {
+            return;
+        }
         //transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
         rig.velocity = offSet / time / moveTimeMultiple;
         //rig.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
