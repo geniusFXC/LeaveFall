@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class MenuManager : MonoBehaviour {
 
     public Button startGameBtn;
 	// Use this for initialization
@@ -18,6 +18,6 @@ public class GameManager : MonoBehaviour {
 	}
     void OnStartGameClick()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("GameScene");
     }
 }

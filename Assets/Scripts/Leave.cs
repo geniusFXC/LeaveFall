@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class Leave : MonoBehaviour {
 
     public Text lifeText;
+    public Text goldText;
     public float moveTimeMultiple = 7;
     public int lifeValue = 3;
 
     private Rigidbody2D rig;
     private float moveTime;
     private Vector3 initPosition;
+    private int goldValue = 0;
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
@@ -68,9 +70,18 @@ public class Leave : MonoBehaviour {
         if (lifeValue <= 0)
         {
             rig.velocity = Vector2.zero;
-            GameControl.instance.isGameOver = true;
+            GameCtrManager.instance.isGameOver = true;
         }
         //Debug.Log("发生碰撞");
         
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Gold")
+        {
+            other.transform.position = new Vector2(0, PoolManager.instance.goldPool.spawnYPosition);
+            goldValue++;
+            goldText.text = "获得金币：" + goldValue;
+        }
     }
 }

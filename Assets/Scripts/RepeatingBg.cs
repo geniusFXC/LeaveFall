@@ -18,7 +18,7 @@ public class RepeatingBg : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        rig.velocity = new Vector2(0 ,GameControl.instance.scrollSpeed);
+        rig.velocity = new Vector2(0 ,GameCtrManager.instance.scrollSpeed);
 	}
 	
 	// Update is called once per frame
