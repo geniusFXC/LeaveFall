@@ -32,10 +32,12 @@ public class GameCtrManager : MonoBehaviour {
         else if (instance != this)
             //...destroy this one because it is a duplicate.
             Destroy(gameObject);
+
+        //Debug.Log("awake"+Time.timeScale);
     }
     // Use this for initialization
     void Start () {
-        backBtn.GetComponent<Button>().onClick.AddListener(OnBackClick);
+        backBtn.GetComponent<Button>().onClick.AddListener(OnMenuSceneClick);
         stopBtn.GetComponent<Button>().onClick.AddListener(OnStopClick);
 	}
 	
@@ -43,6 +45,10 @@ public class GameCtrManager : MonoBehaviour {
 	void Update () {
         GameOver();
 	}
+    void LateUpdate()
+    {
+        isGameOver = false;
+    }
     void GameOver()
     {
         if (isGameOver)
@@ -62,18 +68,8 @@ public class GameCtrManager : MonoBehaviour {
     /// </summary>
     void GameStop()
     {
-        isStop = !isStop;
-        if (isStop)
-        {
-            stopBtnText.text = "开始";
-            Time.timeScale = 0;   
-        }
-        else
-        {
-            stopBtnText.text = "暂停";
-            Time.timeScale = 1;            
-        }
-
+        //Debug.Log("执行");
+        Time.timeScale = 0;
     }
     void GameStart()
     {
@@ -83,13 +79,27 @@ public class GameCtrManager : MonoBehaviour {
     {
 
     }
-    void OnBackClick()
+    void OnMenuSceneClick()
     {
+        Time.timeScale = 1;
+        //Debug.Log(Time.timeScale);
         SceneManager.LoadScene("MenuScene");
     }
     void OnStopClick()
     {
-        GameStop();
         
+        isStop = !isStop;
+        if (isStop)
+        {
+
+            stopBtnText.text = "开始";
+            Time.timeScale = 0;
+        }
+        else
+        {
+            stopBtnText.text = "暂停";
+            Time.timeScale = 1;
+        }
+
     }
 }
