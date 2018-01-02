@@ -4,13 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class Leave : MonoBehaviour {
+public class BaseLeaf : MonoBehaviour {
 
-    public Text lifeText;
-    public Text goldText;
+    
     public float moveTimeMultiple = 7;
     public int lifeValue = 3;
 
+    private Text lifeText;
+    private Text goldText;
     private Rigidbody2D rig;
     private float moveTime;
     private Vector3 initPosition;
@@ -18,7 +19,9 @@ public class Leave : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
-	}
+        lifeText = GameObject.Find("Canvas/LifeText").GetComponent<Text>();
+        goldText = GameObject.Find("Canvas/GoldText").GetComponent<Text>();
+    }
 	
 	// Update is called once per frame
 	void Update () {

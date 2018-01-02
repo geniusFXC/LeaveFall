@@ -12,7 +12,7 @@ public class GameCtrManager : MonoBehaviour {
     public GameObject backBtn;
     public bool isGameOver = false;
     public GameObject bG;
-    public GameObject leave;
+    public GameObject leaf;
 
     public Text meterText;
     public Text goldText;
@@ -37,6 +37,16 @@ public class GameCtrManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        if (LeafManager.instance == null)
+        {
+            Debug.Log("测试模式");
+            Instantiate(leaf);
+        }
+        else
+        {
+            Instantiate(LeafManager.instance.leaf);
+        }
+        
         backBtn.GetComponent<Button>().onClick.AddListener(OnMenuSceneClick);
         stopBtn.GetComponent<Button>().onClick.AddListener(OnStopClick);
 	}
