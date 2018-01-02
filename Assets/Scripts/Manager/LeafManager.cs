@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LeafManager : MonoBehaviour {
     public static LeafManager instance;
-    public GameObject leaf;
+    public BaseLeaf leaf;
     void Awake()
     {
         if (instance == null)

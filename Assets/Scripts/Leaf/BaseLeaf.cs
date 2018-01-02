@@ -9,6 +9,8 @@ public class BaseLeaf : MonoBehaviour {
     
     public float moveTimeMultiple = 7;
     public int lifeValue = 3;
+    public float delayMoveTime = 0;
+    public Vector2 windForce = new Vector2(0,0);
 
     private Text lifeText;
     private Text goldText;
@@ -16,6 +18,7 @@ public class BaseLeaf : MonoBehaviour {
     private float moveTime;
     private Vector3 initPosition;
     private int goldValue = 0;
+    
 	// Use this for initialization
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
@@ -52,22 +55,27 @@ public class BaseLeaf : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
 
-            Move(Camera.main.ScreenToWorldPoint(Input.mousePosition) - initPosition, moveTime);
+            StartCoroutine(Move(Camera.main.ScreenToWorldPoint(Input.mousePosition) - initPosition, moveTime));
+            //Move(Camera.main.ScreenToWorldPoint(Input.mousePosition) - initPosition, moveTime);
             moveTime = 0;
         }
-
+        rig.AddForce(windForce);
+        
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
-    void Move(Vector3 offSet, float time)
+    IEnumerator Move(Vector3 offSet, float time)
     {
         //Debug.Log(time);
         if (time == 0)
         {
-            return;
+            yield break;
         }
         //transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
-        rig.velocity = offSet / time / moveTimeMultiple;
+        
         //rig.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
+        
+        yield return new WaitForSeconds(delayMoveTime);
+        rig.velocity = offSet / time / moveTimeMultiple;
     }
 
     void OnCollisionEnter2D(Collision2D other)
