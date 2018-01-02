@@ -38,9 +38,9 @@ public class MenuManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        if (LeafManager.instance.leaf == null)
+        if (GameFacade.instance.leaf == null)
         {
-            LeafManager.instance.leaf = redLeaf;
+            GameFacade.instance.leaf = redLeaf;
         }
         
 
@@ -71,16 +71,16 @@ public class MenuManager : MonoBehaviour {
     void OnRedLeafClick()
     {
         leavesChoseBg.gameObject.SetActive(false);
-        LeafManager.instance.leaf = redLeaf;
+        GameFacade.instance.leaf = redLeaf;
     }
     void OnYellowLeafClick()
     {
         leavesChoseBg.gameObject.SetActive(false);
-        LeafManager.instance.leaf = yellwLeaf;
+        GameFacade.instance.leaf = yellwLeaf;
     }
     void OnGreenLeafClick()
     {
         leavesChoseBg.gameObject.SetActive(false);
-        LeafManager.instance.leaf = greenLeaf;
+        GameFacade.instance.leaf = greenLeaf;
     }
 }

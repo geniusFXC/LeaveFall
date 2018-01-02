@@ -5,7 +5,13 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 public class BaseLeaf : MonoBehaviour {
-
+    //属性
+    public int healthPoint = 0;//生命值
+    public float fragrancePoint = 0;//香气值 0-1
+    public float brightness = 0;//亮度 0-1
+    public float mass = 0;//重量
+    public float linerDarg = 0;//阻力
+    public float immunity = 0;//对雪天冰冻延迟的免疫力0-1
     
     public float moveTimeMultiple = 7;
     public int lifeValue = 3;
@@ -60,7 +66,6 @@ public class BaseLeaf : MonoBehaviour {
             moveTime = 0;
         }
         rig.AddForce(windForce);
-        
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
     IEnumerator Move(Vector3 offSet, float time)
@@ -68,14 +73,12 @@ public class BaseLeaf : MonoBehaviour {
         //Debug.Log(time);
         if (time == 0)
         {
-            yield break;
+            yield return null;
         }
         //transform.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
-        
-        //rig.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
-        
-        yield return new WaitForSeconds(delayMoveTime);
         rig.velocity = offSet / time / moveTimeMultiple;
+        //rig.DOMove(transform.position + offSet, time * moveTimeMultiple).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(delayMoveTime);
     }
 
     void OnCollisionEnter2D(Collision2D other)

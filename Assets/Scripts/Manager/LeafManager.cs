@@ -17,7 +17,15 @@ public class LeafManager : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        DontDestroyOnLoad(this);
+        if (GameFacade.instance == null)
+        {
+            return;
+        }
+        else
+        {
+            leaf = GameFacade.instance.leaf;
+        }
+        
 	}
 	
 	// Update is called once per frame
