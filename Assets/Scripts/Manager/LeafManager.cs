@@ -44,6 +44,7 @@ public class LeafManager : MonoBehaviour {
             leaf = GameFacade.instance.leaf;
         }
         leaf = Instantiate(leaf);
+
         rig = leaf.GetComponent<Rigidbody2D>();
         
         lifeText = GameObject.Find("Canvas/LifeText").GetComponent<Text>();
@@ -102,5 +103,10 @@ public class LeafManager : MonoBehaviour {
         gold.transform.position = new Vector2(0, PoolManager.instance.goldPool.spawnYPosition);
         //Debug.Log(goldPosition);        
         goldText.text = "获得金币：" + goldNum;
+    }
+
+    public GameObject GetCurrentLeaf()
+    {
+        return leaf;
     }
 }

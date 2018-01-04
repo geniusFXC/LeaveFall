@@ -52,6 +52,7 @@ public class BaseLeaf : MonoBehaviour {
         if(other.tag == "Gold")
         {
             goldValue++;
+            Debug.Log("叶子碰金币"+goldValue);
             LeafManager.instance.CollectionGold(goldValue,other.gameObject);
         }
     }

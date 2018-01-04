@@ -56,7 +56,7 @@ public class WeatherManager : MonoBehaviour {
             timer = 0;
             Debug.Log("改变天气");
             StopAllParticle();
-            switch ((Weather)Random.Range(0, 4))
+            switch ((Weather)Random.Range(0, 5))
             {
                 case Weather.SunShine:
                     SunShine();
