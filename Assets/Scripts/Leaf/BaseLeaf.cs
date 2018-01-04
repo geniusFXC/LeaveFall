@@ -12,23 +12,14 @@ public class BaseLeaf : MonoBehaviour {
     public float mass = 0;//重量
     public float linerDarg = 0;//阻力
     public float immunity = 0;//对雪天冰冻延迟的免疫力0-1
-    
-    
+       
     public int lifeValue = 3;
-    
-    
-
-    
-    
-    
-   
-    private int goldValue = 0;
+    private Rigidbody2D rig;
     
 	// Use this for initialization
 	void Start () {
-        //transform.DORotate(new Vector3(0, 180, 0), 2).SetLoops(-1).SetEase(Ease.Linear);
-
-        
+        transform.DORotate(new Vector3(0, 360, 0), 3,RotateMode.FastBeyond360).SetLoops(-1);
+        rig = GetComponent<Rigidbody2D>();        
     }
 	
 	// Update is called once per frame
@@ -39,8 +30,8 @@ public class BaseLeaf : MonoBehaviour {
         //rig.AddForce(windForce);
         //Debug.Log(windForce);
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        transform.RotateAround(Vector3.zero, Vector3.up,60 *Time.deltaTime);
-        //transform.position = new Vector3(Mathf.PingPong(Time.time, 3), transform.position.y, transform.position.z);
+        //transform.RotateAround(Vector3.zero, Vector3.up,60 *Time.deltaTime);
+        rig.AddForce(new Vector2(Mathf.PingPong(Time.time, 3f) -1.5f, 0));
     }
     
 
