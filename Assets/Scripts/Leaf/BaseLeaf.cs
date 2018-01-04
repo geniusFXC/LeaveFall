@@ -26,17 +26,21 @@ public class BaseLeaf : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        //transform.DORotate(new Vector3(0, 180, 0), 2).SetLoops(-1).SetEase(Ease.Linear);
+
         
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Vector2 mousePositionOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       
-        
+
+
         //rig.AddForce(windForce);
         //Debug.Log(windForce);
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        transform.RotateAround(Vector3.zero, Vector3.up,60 *Time.deltaTime);
+        //transform.position = new Vector3(Mathf.PingPong(Time.time, 3), transform.position.y, transform.position.z);
     }
     
 
