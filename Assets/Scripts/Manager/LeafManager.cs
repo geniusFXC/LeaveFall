@@ -30,6 +30,7 @@ public class LeafManager : MonoBehaviour {
     private Vector3 initPosition;
     private Rigidbody2D rig;
     public Vector2 windForce = new Vector2(0, 0);
+    private int goldValue = 0;
 
     
     // Use this for initialization
@@ -98,13 +99,23 @@ public class LeafManager : MonoBehaviour {
             GameCtrManager.instance.isGameOver = true;
         }
     }
-    public void CollectionGold(int goldNum,GameObject gold)
+    public void CollectionGold(GameObject gold)
     {
+        goldValue++;
         gold.transform.position = new Vector2(0, PoolManager.instance.goldPool.spawnYPosition);
         //Debug.Log(goldPosition);        
-        goldText.text = "获得金币：" + goldNum;
+        goldText.text = "获得金币：" + goldValue;
     }
 
+    public void CloseToButterfly(GameObject butterfly)
+    {
+        //在跟随状态下的碰撞是没有效果的
+        if (!butterfly.GetComponent<Butterfly>().IsFollow())
+        {
+            butterfly.GetComponent<Butterfly>().FollowLeaf();
+        }
+        
+    }
     public GameObject GetCurrentLeaf()
     {
         return leaf;

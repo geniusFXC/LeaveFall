@@ -51,9 +51,15 @@ public class BaseLeaf : MonoBehaviour {
     {
         if(other.tag == "Gold")
         {
-            goldValue++;
-            Debug.Log("叶子碰金币"+goldValue);
-            LeafManager.instance.CollectionGold(goldValue,other.gameObject);
+            
+            //Debug.Log("叶子碰金币"+goldValue);
+            LeafManager.instance.CollectionGold(other.gameObject);
+        }
+        if(other.tag == "Butterfly")
+        {
+            Debug.Log("靠近蝴蝶");
+            LeafManager.instance.CloseToButterfly(other.gameObject);
+            //other.gameObject.GetComponent<Butterfly>().FollowLeaf();
         }
     }
 }
