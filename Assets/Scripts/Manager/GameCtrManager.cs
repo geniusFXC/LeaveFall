@@ -18,6 +18,7 @@ public class GameCtrManager : MonoBehaviour {
     public Text goldText;
     public Button stopBtn;
     public Text stopBtnText;
+    public Button reStartBtn;
 
     private float meters = 0;
     private bool isStop = false;
@@ -41,6 +42,7 @@ public class GameCtrManager : MonoBehaviour {
         //LeafManager.instance.leaf = Instantiate(LeafManager.instance.leaf);
         backBtn.GetComponent<Button>().onClick.AddListener(OnMenuSceneClick);
         stopBtn.GetComponent<Button>().onClick.AddListener(OnStopClick);
+        reStartBtn.onClick.AddListener(GameReStart);
 	}
 	
 	// Update is called once per frame
@@ -56,6 +58,7 @@ public class GameCtrManager : MonoBehaviour {
         if (isGameOver)
         {
             gameOverUI.SetActive(true);
+
             GameStop();
 
         }
@@ -79,7 +82,8 @@ public class GameCtrManager : MonoBehaviour {
     }
     void GameReStart()
     {
-
+        Time.timeScale = 1;
+        SceneManager.LoadScene("GameScene");
     }
     void OnMenuSceneClick()
     {

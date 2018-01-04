@@ -39,13 +39,13 @@ public class WeatherManager : MonoBehaviour {
     public float delayMoveTime = 0f;
     // Use this for initialization
     void Start () {
-
+        Rain();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        RandomWeather();
+        //RandomWeather();
     }
     void RandomWeather()
     {
