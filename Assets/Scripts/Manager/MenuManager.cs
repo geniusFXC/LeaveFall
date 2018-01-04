@@ -15,9 +15,9 @@ public class MenuManager : MonoBehaviour {
     public Button yellowLeafBtn;
     public Button greenLeafBtn;
 
-    public BaseLeaf redLeaf;
-    public BaseLeaf yellwLeaf;
-    public BaseLeaf greenLeaf;
+    public GameObject redLeaf;
+    public GameObject yellwLeaf;
+    public GameObject greenLeaf;
 
     
     

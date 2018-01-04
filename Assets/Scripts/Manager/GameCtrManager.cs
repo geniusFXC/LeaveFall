@@ -38,9 +38,7 @@ public class GameCtrManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         
-        Instantiate(LeafManager.instance.leaf);
-        
-        
+        //LeafManager.instance.leaf = Instantiate(LeafManager.instance.leaf);
         backBtn.GetComponent<Button>().onClick.AddListener(OnMenuSceneClick);
         stopBtn.GetComponent<Button>().onClick.AddListener(OnStopClick);
 	}

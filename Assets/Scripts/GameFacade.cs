@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameFacade : MonoBehaviour {
     public static GameFacade instance;
-    public BaseLeaf leaf;
+    public GameObject leaf;
     void Awake()
     {
         if (instance == null)
